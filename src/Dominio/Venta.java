@@ -3,23 +3,24 @@ package Dominio;
 import java.io.Serializable;
 import java.io.*;
 import java.util.ArrayList;
+
 public class Venta implements Serializable {
     private Clientes cliente;
-    private ArrayList <Productos> pedidos;
+    private Productos producto;
     //private int[] cantproducto;
-    private int CantTotLitros;
+    private int CantLitros;
     
-    public Venta (Clientes unCliente, ArrayList<Productos> array, int unacant){
+    public Venta (Clientes unCliente, Productos unPrducto, int unacant){
         this.cliente = unCliente;
-        this.pedidos=array;
-        this.CantTotLitros= unacant;
+        this.producto=unPrducto;
+        this.CantLitros= unacant;
     }
-    public ArrayList<Productos> getPedidos() {
-    return pedidos;
+    public Productos getPedidos() {
+    return producto;
 }
 
-public void setPedidos(ArrayList<Productos> pedid) {
-    this.pedidos = pedid;
+public void setPedidos(Productos pedid) {
+    this.producto = pedid;
 }
     public Clientes getCliente() {
         return cliente;
@@ -29,12 +30,17 @@ public void setPedidos(ArrayList<Productos> pedid) {
         this.cliente = unCliente;
     } 
 
-    public int getCantTotLitros() {
-        return CantTotLitros;
+    public int getCantLitros() {
+        return CantLitros;
     }
 
-    public void setCantTotLitros(int unCantTotLitros) {
-        this.CantTotLitros = unCantTotLitros;
+    public void setCantLitros(int unCantLitros) {
+        this.CantLitros = unCantLitros;
+    }
+    
+    @Override
+    public String toString() {
+        return(this.getPedidos().getNombre()+" - "+this.getCantLitros());
     }
 }
-    
+

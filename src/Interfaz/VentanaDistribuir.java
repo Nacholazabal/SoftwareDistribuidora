@@ -7,13 +7,15 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 
-public class VentanaDistribuir extends javax.swing.JFrame {
-
+public class VentanaDistribuir extends javax.swing.JFrame implements Observer {
+    private ArrayList<Venta> array;
     private SistemaBeta sistema;
     public VentanaDistribuir(SistemaBeta unsistema) {
         initComponents();
         this.sistema=unsistema;
-        lstPedidos.setListData(this.sistema.getListaCamiones().toArray());
+        this.array=new ArrayList<Venta>();
+        this.lstPedidos.setListData(this.sistema.getListaVentas().toArray());
+        cargarCombos();
     }
 
     /**
@@ -32,7 +34,7 @@ public class VentanaDistribuir extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         ComboProducto = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        cantTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         lstPedidos = new javax.swing.JList();
@@ -51,6 +53,11 @@ public class VentanaDistribuir extends javax.swing.JFrame {
         ComboCliente.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 ComboClienteItemStateChanged(evt);
+            }
+        });
+        ComboCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboClienteActionPerformed(evt);
             }
         });
 
@@ -97,7 +104,7 @@ public class VentanaDistribuir extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ComboCliente, 0, 265, Short.MAX_VALUE)
                             .addComponent(ComboProducto, 0, 265, Short.MAX_VALUE)
-                            .addComponent(jTextField1))))
+                            .addComponent(cantTxt))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAgregar)
                 .addGap(129, 129, 129))
@@ -135,7 +142,7 @@ public class VentanaDistribuir extends javax.swing.JFrame {
                     .addComponent(ComboProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cantTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(btnAgregar))
                 .addGap(18, 18, 18)
@@ -149,8 +156,18 @@ public class VentanaDistribuir extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        Menu v = new Menu(this.sistema);
-        v.setVisible(true);
+        String cliente = this.ComboCliente.getSelectedItem().toString();
+        String producto = this.ComboProducto.getSelectedItem().toString();
+        Clientes cli = sistema.devolverCliente(cliente);
+        Productos prod = sistema.devolverProducto(producto);
+        if (this.cantTxt.getText().length() > 0 && cli != null && prod != null) {
+            int cant = Integer.parseInt(this.cantTxt.getText());
+            Venta unaVenta = new Venta(cli, prod, cant);
+            this.sistema.agregarVentas(unaVenta);
+            String alt="Pedido agregado";
+            JOptionPane.showMessageDialog(this, alt);
+            this.sistema.actualizar();
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -158,8 +175,12 @@ public class VentanaDistribuir extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void ComboClienteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboClienteItemStateChanged
-        // TODO add your handling code here:
+        cargarLista();
     }//GEN-LAST:event_ComboClienteItemStateChanged
+
+    private void ComboClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,6 +191,7 @@ public class VentanaDistribuir extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboCliente;
     private javax.swing.JComboBox<String> ComboProducto;
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JTextField cantTxt;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -178,13 +200,35 @@ public class VentanaDistribuir extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JList lstPedidos;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void update(Observable o, Object obj){
-        lstCamiones.setListData((String[]) this.sistema.getListaCamiones().toArray()); 
+        cargarCombos();
+        cargarLista();
     }
-
+    void cargarCombos(){
+        for (int i = 0; i < sistema.getListaClientes().size(); i++) {
+            this.ComboCliente.addItem(sistema.getListaClientes().get(i).toString());
+        }
+        for (int i = 0; i < sistema.getListaProductos().size(); i++) {
+            this.ComboProducto.addItem(sistema.getListaProductos().get(i).toString());
+        }
+    }
+    void cargarLista(){
+        String cliente = this.ComboCliente.getSelectedItem().toString();
+        this.array.clear();
+        
+        ArrayList<Venta> arrayTodos = new ArrayList<Venta>();
+        arrayTodos = (ArrayList)this.sistema.getListaVentas().clone();
+        for (int i = 0; i < arrayTodos.size(); i++) {
+            Venta estaVenta = arrayTodos.get(i);
+            String esteCliente = estaVenta.getCliente().toString();
+            if(esteCliente.equals(cliente)){
+                this.array.add(estaVenta);
+            }
+        }
+        this.lstPedidos.setListData(this.array.toArray());
+    }
 }

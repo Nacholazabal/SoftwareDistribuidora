@@ -5,9 +5,9 @@ public class Productos {
     private int cant;
   //private int stock;
   // private int pedido;
-    public Productos (String unNombre ){ //int unacant
+    public Productos (String unNombre, int unaCant){ //int unacant
         this.nombre = unNombre;
-        this.cant=0;
+        this.cant=unaCant;
     }
     
     public String getNombre() {

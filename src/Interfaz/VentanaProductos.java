@@ -119,12 +119,12 @@ public class VentanaProductos extends javax.swing.JFrame implements Observer {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // Una vez terminado agregar todas las corroboraciones y etc
         //int h=0;
-        String nombre= nombretxt.getText();
-        //String cant= canttxt.getText();
-        //h= Integer.parseInt(cant);
-        Productos nC= new Productos(nombre);
+        String nombre = nombretxt.getText();
+        String cantS = canttxt.getText();
+        int cantI = Integer.parseInt(cantS);
+        Productos nC = new Productos(nombre,cantI);
         this.sistema.agregarProductos(nC);
-        String alt="Producto agregado";
+        String alt = "Producto agregado";
         JOptionPane.showMessageDialog(this, alt);
         this.sistema.actualizar();
     }//GEN-LAST:event_btnAgregarActionPerformed

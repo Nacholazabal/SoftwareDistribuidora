@@ -167,7 +167,7 @@ public class VentanaClientes extends javax.swing.JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object obj){
-        lstClientes.setListData(this.sistema.getListaCamiones().toArray()); 
+        lstClientes.setListData(this.sistema.getListaClientes().toArray()); 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

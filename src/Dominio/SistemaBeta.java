@@ -116,4 +116,24 @@ public class SistemaBeta extends Observable implements Serializable {
         }
     }
     
+    public Clientes devolverCliente(String unCliente){
+        for (int i = 0; i < this.getListaClientes().size(); i++) {
+            String aux = this.getListaClientes().get(i).toString();
+            if(aux.equals(unCliente)){
+                return this.getListaClientes().get(i);
+            }
+        }
+        return null;
+    }
+    
+    public Productos devolverProducto(String unProducto){
+        for (int i = 0; i < this.getListaProductos().size(); i++) {
+            String aux = this.getListaProductos().get(i).toString();
+            if(aux.equals(unProducto)){
+                return this.getListaProductos().get(i);
+            }
+        }
+        return null;
+    }
+    
 }
