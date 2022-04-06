@@ -13,7 +13,7 @@ public class VentanaDistribuir extends javax.swing.JFrame {
     public VentanaDistribuir(SistemaBeta unsistema) {
         initComponents();
         this.sistema=unsistema;
-        lstPedidoss.setListData(this.sistema.getListaCamiones().toArray());
+        lstPedidos.setListData(this.sistema.getListaCamiones().toArray());
     }
 
     /**
