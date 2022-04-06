@@ -15,7 +15,7 @@ public class VentanaDistribuir extends javax.swing.JFrame implements Observer {
         this.sistema=unsistema;
         this.array=new ArrayList<Venta>();
         this.lstPedidos.setListData(this.sistema.getListaVentas().toArray());
-        cargarCombos();
+        cargarCombos(); //agrego este comentario
     }
 
     /**
