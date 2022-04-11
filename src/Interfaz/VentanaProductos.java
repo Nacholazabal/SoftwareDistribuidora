@@ -117,8 +117,7 @@ public class VentanaProductos extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // Una vez terminado agregar todas las corroboraciones y etc
-        //int h=0;
+
         String nombre = nombretxt.getText();
         String cantS = canttxt.getText();
         int cantI = Integer.parseInt(cantS);
@@ -126,7 +125,9 @@ public class VentanaProductos extends javax.swing.JFrame implements Observer {
         this.sistema.agregarProductos(nC);
         String alt = "Producto agregado";
         JOptionPane.showMessageDialog(this, alt);
+        actualizarVentana();
         this.sistema.actualizar();
+        
     }//GEN-LAST:event_btnAgregarActionPerformed
 
 
@@ -141,7 +142,12 @@ public class VentanaProductos extends javax.swing.JFrame implements Observer {
     private javax.swing.JList lstProductos;
     private javax.swing.JTextField nombretxt;
     // End of variables declaration//GEN-END:variables
-
+    private void actualizarVentana() {
+    lstProductos.clearSelection();
+    lstProductos.setListData(this.sistema.getListaProductos().toArray());
+    nombretxt.setText("");
+    canttxt.setText("");
+    }
     @Override
     public void update(Observable o, Object obj){
          lstProductos.setListData(this.sistema.getListaProductos().toArray()); 

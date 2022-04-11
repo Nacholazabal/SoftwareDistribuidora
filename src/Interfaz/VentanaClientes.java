@@ -164,7 +164,14 @@ public class VentanaClientes extends javax.swing.JFrame implements Observer {
         // TODO add your handling code here:
     }//GEN-LAST:event_LongtxtActionPerformed
 
-
+    private void actualizarVentana() {
+    lstClientes.clearSelection();
+    lstClientes.setListData(this.sistema.getListaClientes().toArray());
+    nombretxt.setText("");
+    Lattxt.setText("");
+    Longtxt.setText("");
+    }
+    
     @Override
     public void update(Observable o, Object obj){
         lstClientes.setListData(this.sistema.getListaClientes().toArray()); 

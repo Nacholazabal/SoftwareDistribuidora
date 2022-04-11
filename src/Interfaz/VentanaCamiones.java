@@ -135,18 +135,27 @@ public class VentanaCamiones extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-    // Una vez terminado agregar todas las corroboraciones y etc
+    String alt=new String("Datos incorrectos, porfavor verifique:");
+    boolean bul = true;
     int h=0;
     String nombre= nombretxt.getText();
     String matricula= matriculatxt.getText();
     String chofer= chofertxt.getText();
     String carga = cargaLtxt.getText();
+    bul= this.sistema.chequearNumero(carga, 10000000, 99999999);
+    if(bul){
     h= Integer.parseInt(carga);
     Camiones nC= new Camiones(nombre, h, matricula, chofer);
     this.sistema.agregarCamiones(nC);
-    String alt="Camion agregado";
+    alt="Camion agregado";
     JOptionPane.showMessageDialog(this, alt);
-    this.sistema.actualizar(); 
+    actualizarVentana();
+    this.sistema.actualizar();
+    }else{
+    alt=alt+" Carga";
+    JOptionPane.showMessageDialog(this, alt, "ERROR", ERROR_MESSAGE);
+    }
+     
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed

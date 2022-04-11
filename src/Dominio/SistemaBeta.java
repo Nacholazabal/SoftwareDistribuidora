@@ -177,4 +177,17 @@ public class SistemaBeta extends Observable implements Serializable {
         }
     }
     
+        public boolean chequearNumero(String input, int minimo, int maximo) {
+        boolean bool = true;
+        try {
+            if (Integer.parseInt(input) >= minimo && Integer.parseInt(input) <= maximo) {
+
+                bool = true;
+            }
+        } catch (NumberFormatException e) {
+
+            bool = false;
+        }
+        return (bool);
+    }
 }
