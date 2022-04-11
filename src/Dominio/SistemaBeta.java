@@ -165,4 +165,16 @@ public class SistemaBeta extends Observable implements Serializable {
         return ret;
     }
     
+    public void guardadCosas() {
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(
+                    Files.newOutputStream(Paths.get("Salida.txt")));
+            out.writeObject(this);
+            out.close();
+        } catch (IOException e) {
+            System.out.println("Error de archivo");
+            System.exit(1);
+        }
+    }
+    
 }

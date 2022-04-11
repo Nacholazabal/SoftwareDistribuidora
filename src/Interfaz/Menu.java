@@ -126,7 +126,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProductosActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-      //  this.sistema.guardadCosas();
+        this.sistema.guardadCosas();
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
