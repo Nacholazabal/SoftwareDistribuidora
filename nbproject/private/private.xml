@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/usuario/Documents/GeABe/trabajo%20nacho/SoftwareBeta1.5/SoftwareBeta/src/Dominio/Productos.java</file>
-            <file>file:/C:/Users/usuario/Documents/GeABe/trabajo%20nacho/SoftwareBeta1.5/SoftwareBeta/src/Dominio/SistemaBeta.java</file>
-            <file>file:/C:/Users/usuario/Documents/GeABe/trabajo%20nacho/SoftwareBeta1.5/SoftwareBeta/src/Dominio/Venta.java</file>
-            <file>file:/C:/Users/usuario/Documents/GeABe/trabajo%20nacho/SoftwareBeta1.5/SoftwareBeta/src/Interfaz/VentanaDistribuir.java</file>
-            <file>file:/C:/Users/usuario/Documents/GeABe/trabajo%20nacho/SoftwareBeta1.5/SoftwareBeta/src/Interfaz/VentanaProductos.java</file>
-            <file>file:/C:/Users/usuario/Documents/GeABe/trabajo%20nacho/SoftwareBeta1.5/SoftwareBeta/src/Interfaz/VentanaClientes.java</file>
+            <file>file:/C:/Users/usuario/Documents/GeABe/trabajo%20nacho/SoftwareBeta1.7/SoftwareBeta/src/Dominio/SistemaBeta.java</file>
+            <file>file:/C:/Users/usuario/Documents/GeABe/trabajo%20nacho/SoftwareBeta1.7/SoftwareBeta/src/Interfaz/VentanaClientes.java</file>
+            <file>file:/C:/Users/usuario/Documents/GeABe/trabajo%20nacho/SoftwareBeta1.7/SoftwareBeta/src/Interfaz/VentanaCamiones.java</file>
+            <file>file:/C:/Users/usuario/Documents/GeABe/trabajo%20nacho/SoftwareBeta1.7/SoftwareBeta/src/Dominio/Camiones.java</file>
+            <file>file:/C:/Users/usuario/Documents/GeABe/trabajo%20nacho/SoftwareBeta1.7/SoftwareBeta/src/Dominio/Venta.java</file>
+            <file>file:/C:/Users/usuario/Documents/GeABe/trabajo%20nacho/SoftwareBeta1.7/SoftwareBeta/src/Interfaz/VentanaProductos.java</file>
+            <file>file:/C:/Users/usuario/Documents/GeABe/trabajo%20nacho/SoftwareBeta1.7/SoftwareBeta/src/Interfaz/VentanaDistribuir.java</file>
         </group>
     </open-files>
 </project-private>

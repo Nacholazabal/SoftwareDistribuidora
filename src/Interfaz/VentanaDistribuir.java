@@ -15,7 +15,8 @@ public class VentanaDistribuir extends javax.swing.JFrame implements Observer {
         this.sistema=unsistema;
         this.array=new ArrayList<Venta>();
         this.lstPedidos.setListData(this.sistema.getListaVentas().toArray());
-        cargarCombos(); //agrego este comentario
+        sistema.addObserver(this);
+        cargarCombos();
     }
 
     /**
@@ -40,6 +41,7 @@ public class VentanaDistribuir extends javax.swing.JFrame implements Observer {
         lstPedidos = new javax.swing.JList();
         btnAgregar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -88,42 +90,52 @@ public class VentanaDistribuir extends javax.swing.JFrame implements Observer {
             }
         });
 
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addGap(111, 111, 111)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ComboCliente, 0, 265, Short.MAX_VALUE)
-                            .addComponent(ComboProducto, 0, 265, Short.MAX_VALUE)
-                            .addComponent(cantTxt))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAgregar)
-                .addGap(129, 129, 129))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(469, 469, 469)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(118, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(357, 357, 357))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(469, 469, 469)
+                            .addComponent(jLabel1))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(187, 187, 187)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(114, 114, 114)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(142, 142, 142)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnEliminar)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel3))
+                                        .addGap(111, 111, 111)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(ComboCliente, 0, 265, Short.MAX_VALUE)
+                                            .addComponent(ComboProducto, 0, 265, Short.MAX_VALUE)
+                                            .addComponent(cantTxt))))
+                                .addGap(66, 66, 66)
+                                .addComponent(btnAgregar)))))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,37 +148,52 @@ public class VentanaDistribuir extends javax.swing.JFrame implements Observer {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ComboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(23, 23, 23)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
-                    .addComponent(ComboProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cantTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(btnAgregar))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ComboProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAgregar)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cantTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEliminar)
+                        .addGap(35, 35, 35)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        String cliente = this.ComboCliente.getSelectedItem().toString();
-        String producto = this.ComboProducto.getSelectedItem().toString();
-        Clientes cli = sistema.devolverCliente(cliente);
-        Productos prod = sistema.devolverProducto(producto);
-        if (this.cantTxt.getText().length() > 0 && cli != null && prod != null) {
-            int cant = Integer.parseInt(this.cantTxt.getText());
-            Venta unaVenta = new Venta(cli, prod, cant);
-            this.sistema.agregarVentas(unaVenta);
-            String alt="Pedido agregado";
-            JOptionPane.showMessageDialog(this, alt);
-            this.sistema.actualizar();
+        if (this.ComboCliente.getSelectedItem()!=null && this.ComboProducto.getSelectedItem()!=null) {      //valida que los campos esten con datos
+            String cliente = this.ComboCliente.getSelectedItem().toString();
+            String producto = this.ComboProducto.getSelectedItem().toString();
+            Clientes cli = sistema.devolverCliente(cliente);
+            Productos prod = sistema.devolverProducto(producto);
+            if (this.cantTxt.getText().length() > 0 && cli != null && prod != null) {                       //valida que los datos sean correctos
+                int cant = Integer.parseInt(this.cantTxt.getText());
+                if (sistema.validacionyRestaVenta(prod, cant)) {                                                  //valida que el stock alcance
+                    Venta unaVenta = new Venta(cli, prod, cant);
+                    this.sistema.agregarVentas(unaVenta);
+                    String alt="Pedido agregado";
+                    JOptionPane.showMessageDialog(this, alt);
+                    this.sistema.actualizar();
+                }
+                else{
+                    String alt="Stock insuficiente";
+                    JOptionPane.showMessageDialog(this, alt);
+                }
+            }
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -182,6 +209,14 @@ public class VentanaDistribuir extends javax.swing.JFrame implements Observer {
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboClienteActionPerformed
 
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if (this.lstPedidos.getSelectedValue() != null) {
+            String pedido = this.lstPedidos.getSelectedValue().toString();
+            sistema.eliminarPedido(pedido);
+            this.sistema.actualizar();
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -191,6 +226,7 @@ public class VentanaDistribuir extends javax.swing.JFrame implements Observer {
     private javax.swing.JComboBox<String> ComboCliente;
     private javax.swing.JComboBox<String> ComboProducto;
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JTextField cantTxt;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -209,6 +245,8 @@ public class VentanaDistribuir extends javax.swing.JFrame implements Observer {
         cargarLista();
     }
     void cargarCombos(){
+        this.ComboCliente.removeAllItems();
+        this.ComboProducto.removeAllItems();
         for (int i = 0; i < sistema.getListaClientes().size(); i++) {
             this.ComboCliente.addItem(sistema.getListaClientes().get(i).toString());
         }
@@ -217,18 +255,24 @@ public class VentanaDistribuir extends javax.swing.JFrame implements Observer {
         }
     }
     void cargarLista(){
-        String cliente = this.ComboCliente.getSelectedItem().toString();
-        this.array.clear();
-        
-        ArrayList<Venta> arrayTodos = new ArrayList<Venta>();
-        arrayTodos = (ArrayList)this.sistema.getListaVentas().clone();
-        for (int i = 0; i < arrayTodos.size(); i++) {
-            Venta estaVenta = arrayTodos.get(i);
-            String esteCliente = estaVenta.getCliente().toString();
-            if(esteCliente.equals(cliente)){
-                this.array.add(estaVenta);
+        if (this.ComboCliente.getSelectedIndex()>=0) {
+            String cliente = this.ComboCliente.getSelectedItem().toString();
+            this.array.clear();
+            ArrayList<Venta> arrayTodos = new ArrayList<Venta>();
+            arrayTodos = (ArrayList)this.sistema.getListaVentas().clone();
+            for (int i = 0; i < arrayTodos.size(); i++) {
+                Venta estaVenta = arrayTodos.get(i);
+                String esteCliente = estaVenta.getCliente().toString();
+                if(esteCliente.equals(cliente)){
+                    this.array.add(estaVenta);
+                }
             }
+            this.lstPedidos.setListData(this.array.toArray());
         }
-        this.lstPedidos.setListData(this.array.toArray());
+        else{
+            this.array.clear();
+            this.array = (ArrayList)this.sistema.getListaVentas().clone();
+        }
+        
     }
 }

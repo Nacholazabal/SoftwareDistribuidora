@@ -116,6 +116,15 @@ public class SistemaBeta extends Observable implements Serializable {
         }
     }
     
+    public void eliminarPedido(String unPedido){
+        for (int i = 0; i < this.listaVentas.size(); i++) {
+            if(this.listaVentas.get(i).toString().equals(unPedido)){
+                this.listaVentas.remove(i);
+                return;
+            }
+        }
+    }
+    
     public Clientes devolverCliente(String unCliente){
         for (int i = 0; i < this.getListaClientes().size(); i++) {
             String aux = this.getListaClientes().get(i).toString();
@@ -134,6 +143,26 @@ public class SistemaBeta extends Observable implements Serializable {
             }
         }
         return null;
+    }
+    
+    public boolean validacionyRestaVenta(Productos unProd, int unaCant){
+        if(unProd.getCant()>unaCant){
+            unProd.setCant(unProd.getCant()-unaCant);
+            return true;
+        }
+        return false;
+    }
+    
+    ///////////////////////////////////////////////////////
+    
+    public int sumaLitrosCliente(Clientes unCliente){
+        int ret = 0;
+        for (int i = 0; i < this.listaVentas.size(); i++) {
+            if (this.listaVentas.get(i).getCliente().equals(unCliente)) {
+                ret+=this.listaVentas.get(i).getCantLitros();
+            }
+        }
+        return ret;
     }
     
 }
