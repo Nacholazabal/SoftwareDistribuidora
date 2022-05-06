@@ -191,3 +191,5 @@ public class SistemaBeta extends Observable implements Serializable {
         return (bool);
     }
 }
+
+// comentario de prueba
