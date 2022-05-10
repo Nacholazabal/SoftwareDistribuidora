@@ -3,6 +3,7 @@ package Dominio;
 import java.io.Serializable;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Venta implements Serializable {
     private Clientes cliente;
@@ -37,6 +38,20 @@ public void setPedidos(Productos pedid) {
     public void setCantLitros(int unCantLitros) {
         this.CantLitros = unCantLitros;
     }
+    
+     public static Comparator<Venta> Vcant = new Comparator<Venta>() {
+
+	public int compare(Venta s1, Venta s2) {
+
+	   int rollno1 = s1.getCantLitros();
+	   int rollno2 = s2.getCantLitros();
+
+	   /*For ascending order*/
+	   return rollno1-rollno2;
+
+	   /*For descending order*/
+	   //rollno2-rollno1;
+    }};
     
     @Override
     public String toString() {
