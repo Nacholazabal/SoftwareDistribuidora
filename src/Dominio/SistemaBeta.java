@@ -13,30 +13,28 @@ public class SistemaBeta extends Observable implements Serializable {
     public ArrayList<Clientes> listaClientes;
     public ArrayList<Productos> listaProductos;
     public ArrayList<Venta> listaVentas;
+    public ArrayList<Rutas> listaRutas;
     public SistemaBeta() {
         listaVentas = new ArrayList<Venta>();  
         listaCamiones = new ArrayList<Camiones>();
         listaClientes = new ArrayList<Clientes>();
         listaProductos = new ArrayList<Productos>();
+        listaRutas = new ArrayList<Rutas>();
     }
     
     public void agregarVentas(Venta unaVenta) {
-
         listaVentas.add(unaVenta);
     }
     
     public void agregarCamiones(Camiones unaCamiones) {
-
         listaCamiones.add(unaCamiones);
     }
 
     public void agregarClientes(Clientes unClientes) {
-
         listaClientes.add(unClientes);
     }
 
     public void agregarProductos(Productos unProductos) {
-
         listaProductos.add(unProductos);
     }
     
@@ -70,6 +68,14 @@ public class SistemaBeta extends Observable implements Serializable {
     
     public void setListaVentas(ArrayList<Venta> listaVentas) {
         this.listaVentas = listaVentas;
+    }
+
+    public ArrayList<Rutas> getListaRutas() {
+        return listaRutas;
+    }
+
+    public void agregarRutas(Rutas unaRuta) {
+        listaRutas.add(unaRuta);
     }
     
      public ArrayList<String> seleccionarCamiones() {
@@ -177,7 +183,7 @@ public class SistemaBeta extends Observable implements Serializable {
         }
     }
     
-        public boolean chequearNumero(String input, int minimo, int maximo) {
+    public boolean chequearNumero(String input, int minimo, int maximo) {
         boolean bool = true;
         try {
             if (Integer.parseInt(input) >= minimo && Integer.parseInt(input) <= maximo) {
@@ -190,6 +196,28 @@ public class SistemaBeta extends Observable implements Serializable {
         }
         return (bool);
     }
+    
+    public void crearRuta(String unaCalle, double x1, double y1, double x2, double y2){
+        Rutas laRuta = new Rutas(unaCalle, x1,y1,x2,y2);
+        this.agregarRutas(laRuta);
+    }
+    
+    public Rutas rutaMasCerca(Clientes unCliente){
+        double la = Double.parseDouble(unCliente.getLa());
+        double lg = Double.parseDouble(unCliente.getLg());
+        Rutas ret = this.getListaRutas().get(0);
+        double distMenor = Double.MAX_VALUE;
+        for (int i = 0; i < this.getListaRutas().size(); i++) {
+            double dist = this.getListaRutas().get(i).distanciaPerpendicular(lg, la);
+            if(dist<distMenor){
+                ret = this.getListaRutas().get(i);
+                distMenor = dist;
+            }
+        }
+        return ret;
+    } 
 }
 
-// comentario de prueba
+
+
+
