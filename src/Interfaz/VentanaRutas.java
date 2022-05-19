@@ -252,6 +252,8 @@ public class VentanaRutas extends javax.swing.JFrame implements Observer {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     this.sistema.leerRutas("Calles.txt");    
+    actualizarVentana();
+        this.sistema.actualizar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
