@@ -225,7 +225,22 @@ public class SistemaBeta extends Observable implements Serializable {
         }
         return ret;
     }
-
+    
+        public void leerRutas(String path){
+        ArchivoLectura al = new ArchivoLectura(path);
+        while(al.hayMasLineas()){
+            String linea = al.line();
+            String [] partes = linea.split("\\|");
+            String calle = partes[0];
+            double x1 = Double.parseDouble(partes[1]);
+            double y1 = Double.parseDouble(partes[2]);
+            double x2 = Double.parseDouble(partes[3]);
+            double y2 = Double.parseDouble(partes[4]);
+            crearRuta(calle,x1,y1,x2,y2);
+        }
+        al.cerrar();
+    }
+        
 }
 
 
