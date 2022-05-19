@@ -234,7 +234,7 @@ public class VentanaRutas extends javax.swing.JFrame implements Observer {
         double xfd = Double.parseDouble(xf);
         double yid = Double.parseDouble(yi);
         double yfd = Double.parseDouble(yf);
-        Rutas nR = new Rutas (calle, xid,xfd,yid,yfd);
+        Rutas nR = new Rutas (calle, xid,yid,xfd,yfd);
         this.sistema.agregarRutas(nR);
         String alt=new String("Ruta agregada");
         JOptionPane.showMessageDialog(this, alt);
