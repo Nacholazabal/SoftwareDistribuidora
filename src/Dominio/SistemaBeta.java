@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Observable;
 
 public class SistemaBeta extends Observable implements Serializable {
@@ -191,6 +192,9 @@ public class SistemaBeta extends Observable implements Serializable {
         }
         return (bool);
     }
+        public void SortByCant(){
+            Collections.sort(this.getListaVentas(), Venta.Vcant);
+        }
 }
 
 // comentario de prueba
