@@ -9,7 +9,6 @@ public class Rutas implements Serializable {
     private double pendiente;
     private double [] dominio;
     
-    
     public Rutas (String unaCalle, double xi, double yi, double xf, double yf){
         this.calle = unaCalle;
         double div = (yf-yi)/(xf-xi);
@@ -76,5 +75,10 @@ public class Rutas implements Serializable {
         double ret = Math.sqrt(Math.pow((x0-x),2)+Math.pow((y0-y),2));
         return ret;
     }
+    
+     @Override
+    public String toString() {
+        return(this.getCalle()+" /indep/ "+this.getIndependiente()+" /pend/ "+this.getPendiente());
+    }  
     
 }

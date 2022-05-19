@@ -131,6 +131,15 @@ public class SistemaBeta extends Observable implements Serializable {
         }
     }
     
+    public void eliminarRuta(String unaRuta){
+        for (int i = 0; i < this.listaRutas.size(); i++) {
+            if(this.listaRutas.get(i).toString().equals(unaRuta)){
+                this.listaRutas.remove(i);
+                return;
+            }
+        }
+    }
+    
     public Clientes devolverCliente(String unCliente){
         for (int i = 0; i < this.getListaClientes().size(); i++) {
             String aux = this.getListaClientes().get(i).toString();
@@ -216,21 +225,7 @@ public class SistemaBeta extends Observable implements Serializable {
         }
         return ret;
     }
-    
-    public void leerRutas(String path){
-        ArchivoLectura al = new ArchivoLectura(path);
-        while(al.hayMasLineas()){
-            String linea = al.line();
-            String [] partes = linea.split("|");
-            String calle = partes[0];
-            double x1 = Double.parseDouble(partes[1]);
-            double y1 = Double.parseDouble(partes[2]);
-            double x2 = Double.parseDouble(partes[3]);
-            double y2 = Double.parseDouble(partes[4]);
-            crearRuta(calle,x1,y1,x2,y2);
-        }
-        al.cerrar();
-    }
+
 }
 
 
