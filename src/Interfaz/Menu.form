@@ -29,27 +29,36 @@
                   <Component id="btnPedidos" alignment="2" min="-2" pref="385" max="-2" attributes="0"/>
                   <Component id="btnClientes" alignment="2" min="-2" pref="385" max="-2" attributes="0"/>
                   <Component id="btnCamiones" alignment="2" min="-2" pref="385" max="-2" attributes="0"/>
-                  <Component id="btnProductos" alignment="2" min="-2" pref="385" max="-2" attributes="0"/>
-                  <Component id="btnSalir" alignment="2" min="-2" pref="385" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="123" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnProductos" min="-2" pref="385" max="-2" attributes="0"/>
+                  <Component id="btnSalir" min="-2" pref="385" max="-2" attributes="0"/>
+                  <Component id="btnRutas" min="-2" pref="385" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="110" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnPedidos" min="-2" pref="55" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnPedidos" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="btnProductos" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnCamiones" min="-2" pref="55" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnCamiones" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="btnRutas" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnClientes" min="-2" pref="55" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnProductos" min="-2" pref="55" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnSalir" min="-2" pref="55" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnClientes" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="btnSalir" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="135" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -108,6 +117,17 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnRutas">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Rutas"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRutasActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
