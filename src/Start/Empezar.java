@@ -14,7 +14,7 @@ public class Empezar {
             Files.newInputStream(Paths.get("Salida.txt")));
             Sistema =(SistemaBeta)in.readObject();
             in.close();
-            Sistema.leerRutas("Calles.txt"); 
+             
         } catch (IOException e) {
             System.out.println("Error de recuperación");
             Sistema=new SistemaBeta();

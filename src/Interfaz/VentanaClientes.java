@@ -38,6 +38,7 @@ public class VentanaClientes extends javax.swing.JFrame implements Observer {
         Longtxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        pruebabtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -76,15 +77,25 @@ public class VentanaClientes extends javax.swing.JFrame implements Observer {
 
         jLabel5.setText("LONGITUD:");
 
+        pruebabtn.setText("pruebaa");
+        pruebabtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pruebabtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jLabel2)
-                .addGap(5, 5, 5)
-                .addComponent(nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(5, 5, 5)
+                        .addComponent(nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pruebabtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,7 +139,8 @@ public class VentanaClientes extends javax.swing.JFrame implements Observer {
                     .addComponent(btnEliminar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Longtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)))
+                        .addComponent(jLabel5)
+                        .addComponent(pruebabtn)))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -162,6 +174,15 @@ public class VentanaClientes extends javax.swing.JFrame implements Observer {
         // TODO add your handling code here:
     }//GEN-LAST:event_LongtxtActionPerformed
 
+    private void pruebabtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pruebabtnActionPerformed
+    if (this.lstClientes.getSelectedValue() != null) {
+            Clientes unCliente = (Clientes)this.lstClientes.getSelectedValue();
+            Rutas ruta = sistema.rutaMasCerca(unCliente);
+            String alt= ruta.toString();
+           JOptionPane.showMessageDialog(this, alt);
+        }
+    }//GEN-LAST:event_pruebabtnActionPerformed
+
     private void actualizarVentana() {
     lstClientes.clearSelection();
     lstClientes.setListData(this.sistema.getListaClientes().toArray());
@@ -188,5 +209,6 @@ public class VentanaClientes extends javax.swing.JFrame implements Observer {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList lstClientes;
     private javax.swing.JTextField nombretxt;
+    private javax.swing.JButton pruebabtn;
     // End of variables declaration//GEN-END:variables
 }
